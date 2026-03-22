@@ -1,24 +1,44 @@
-<?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0">
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" version="2.0">
   <channel>
     <title>NS ČR – senát 23 Cdo – vyhlašovaná rozhodnutí</title>
     <link>https://www.nsoud.cz/uredni-deska/obcanskopravni-a-obchodni-kolegium/vyhlasovana-rozhodnuti</link>
     <description>Rozhodnutí senátu 23 Cdo vyhlášená na úřední desce Nejvyššího soudu ČR</description>
     <language>cs</language>
-    <lastBuildDate>Sun, 22 Mar 2026 19:58:44 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2026 20:03:42 +0000</lastBuildDate>
     <item>
-      <title>23 Cdo 3482 / 2024</title>
+      <title>Rozsudek 23 Cdo 3482 / 2024</title>
       <link>https://www.nsoud.cz/fileadmin/user_upload/Uredni_deska/UD_-_civilni/Vyhlas._zneni_rozsudku_23_Cdo_3482_2024.pdf</link>
       <guid isPermaLink="true">https://www.nsoud.cz/fileadmin/user_upload/Uredni_deska/UD_-_civilni/Vyhlas._zneni_rozsudku_23_Cdo_3482_2024.pdf</guid>
-      <description>Rozhodnutí 23 Cdo 3482 / 2024 vyhlášeno 11.03.2026</description>
+      <enclosure url="https://www.nsoud.cz/fileadmin/user_upload/Uredni_deska/UD_-_civilni/Vyhlas._zneni_rozsudku_23_Cdo_3482_2024.pdf" type="application/pdf" />
+      <description>Rozsudek Nejvyššího soudu sp. zn. 23 Cdo 3482 / 2024, vyhlášeno dne 11.03.2026. Senát 23 Cdo, občanskoprávní a obchodní kolegium.</description>
+      <dc:creator>Nejvyšší soud</dc:creator>
+      <dc:publisher>Nejvyšší soud</dc:publisher>
+      <dc:type>Rozsudek</dc:type>
+      <dc:source>Úřední deska – občanskoprávní a obchodní kolegium</dc:source>
+      <dc:language>cs</dc:language>
+      <dc:identifier>23 Cdo 3482 / 2024</dc:identifier>
+      <dc:subject>občanské právo; obchodní právo</dc:subject>
+      <prism:publicationName>Sbírka rozhodnutí Nejvyššího soudu</prism:publicationName>
       <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <dc:date>2026-03-11</dc:date>
     </item>
     <item>
-      <title>23 Cdo 636 / 2025</title>
+      <title>Rozsudek 23 Cdo 636 / 2025</title>
       <link>https://www.nsoud.cz/fileadmin/user_upload/Uredni_deska/UD_-_civilni/Vyhlas._znen%C3%AD_rozsudku_23_Cdo_636_2025.pdf</link>
       <guid isPermaLink="true">https://www.nsoud.cz/fileadmin/user_upload/Uredni_deska/UD_-_civilni/Vyhlas._znen%C3%AD_rozsudku_23_Cdo_636_2025.pdf</guid>
-      <description>Rozhodnutí 23 Cdo 636 / 2025 vyhlášeno 12.03.2026</description>
+      <enclosure url="https://www.nsoud.cz/fileadmin/user_upload/Uredni_deska/UD_-_civilni/Vyhlas._znen%C3%AD_rozsudku_23_Cdo_636_2025.pdf" type="application/pdf" />
+      <description>Rozsudek Nejvyššího soudu sp. zn. 23 Cdo 636 / 2025, vyhlášeno dne 12.03.2026. Senát 23 Cdo, občanskoprávní a obchodní kolegium.</description>
+      <dc:creator>Nejvyšší soud</dc:creator>
+      <dc:publisher>Nejvyšší soud</dc:publisher>
+      <dc:type>Rozsudek</dc:type>
+      <dc:source>Úřední deska – občanskoprávní a obchodní kolegium</dc:source>
+      <dc:language>cs</dc:language>
+      <dc:identifier>23 Cdo 636 / 2025</dc:identifier>
+      <dc:subject>občanské právo; obchodní právo</dc:subject>
+      <prism:publicationName>Sbírka rozhodnutí Nejvyššího soudu</prism:publicationName>
       <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      <dc:date>2026-03-12</dc:date>
     </item>
   </channel>
 </rss>
