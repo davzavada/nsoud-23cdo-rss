@@ -21,13 +21,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run scraper
-        run: python scraper.py
+      - name: Run scrapers
+        run: |
+          python scraper.py
+          python scraper_ipcuria.py
 
-      - name: Commit & push feed
+      - name: Commit & push feeds
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/feed.xml
-          git diff --cached --quiet || git commit -m "Update RSS feed $(date -u +%Y-%m-%d)"
+          git add docs/feed.xml docs/ipcuria_feed.xml
+          git diff --cached --quiet || git commit -m "Update RSS feeds $(date -u +%Y-%m-%d)"
           git push
