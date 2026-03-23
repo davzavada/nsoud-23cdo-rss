@@ -5,7 +5,14 @@
       "WebFetch(domain:eur-lex.europa.eu)",
       "WebSearch",
       "WebFetch(domain:forums.zotero.org)",
-      "WebFetch(domain:www.zotero.org)"
+      "WebFetch(domain:www.zotero.org)",
+      "WebFetch(domain:upv.gov.cz)",
+      "WebFetch(domain:journals.muni.cz)",
+      "WebFetch(domain:legalblogs.wolterskluwer.com)",
+      "Bash(curl -sL \"https://journals.muni.cz/revue/gateway/plugin/WebFeedGatewayPlugin/rss2\")",
+      "Bash(python3 scraper_journals.py)",
+      "Bash(python3 scraper.py)",
+      "Bash(python3 scraper_ipcuria.py)"
     ]
   }
 }

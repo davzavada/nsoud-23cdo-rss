@@ -26,11 +26,12 @@ jobs:
           python scraper.py
           python scraper_ipcuria.py
           python scraper_neprimy_ucinek.py
+          python scraper_journals.py
 
       - name: Commit & push feeds
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/feed.xml docs/ipcuria_feed.xml docs/neprimy_ucinek_feed.xml
+          git add docs/feed.xml docs/ipcuria_feed.xml docs/neprimy_ucinek_feed.xml docs/journals_feed.xml
           git diff --cached --quiet || git commit -m "Update RSS feeds $(date -u +%Y-%m-%d)"
           git push

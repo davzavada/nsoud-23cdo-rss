@@ -97,7 +97,9 @@ def fetch_all():
 
 def build_rss(decisions):
     """Vytvoří RSS 2.0 XML z rozhodnutí."""
-    rss = Element("rss", version="2.0")
+    rss = Element("rss", version="2.0", attrib={
+        "xmlns:dc": "http://purl.org/dc/elements/1.1/"
+    })
     channel = SubElement(rss, "channel")
 
     SubElement(channel, "title").text = "CJEU IP case law"
@@ -135,8 +137,9 @@ def build_rss(decisions):
         SubElement(item, "description").text = "\n".join(desc_parts)
 
         SubElement(item, "pubDate").text = d["date"].strftime(
-            "%a, %d %b %Y 00:00:00 +0000"
+            "%a, %d %b %Y 12:00:00 +0000"
         )
+        SubElement(item, "dc:date").text = d["date"].strftime("%Y-%m-%d")
 
     return rss
 

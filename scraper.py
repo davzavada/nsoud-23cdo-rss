@@ -55,7 +55,9 @@ def fetch_decisions():
 
 def build_rss(decisions):
     """Vytvoří RSS 2.0 XML z rozhodnutí."""
-    rss = Element("rss", version="2.0")
+    rss = Element("rss", version="2.0", attrib={
+        "xmlns:dc": "http://purl.org/dc/elements/1.1/"
+    })
     channel = SubElement(rss, "channel")
 
     SubElement(channel, "title").text = "NS ČR – senát 23 Cdo – vyhlašovaná rozhodnutí"
@@ -83,12 +85,13 @@ def build_rss(decisions):
             f"Rozhodnutí {d['case_number']} vyhlášeno {d['date']}"
         )
 
-        # Převod data DD.MM.YYYY na RFC 822
+        # Převod data DD.MM.YYYY
         try:
             dt = datetime.strptime(d["date"], "%d.%m.%Y").replace(tzinfo=timezone.utc)
             SubElement(item, "pubDate").text = dt.strftime(
-                "%a, %d %b %Y 00:00:00 +0000"
+                "%a, %d %b %Y 12:00:00 +0000"
             )
+            SubElement(item, "dc:date").text = dt.strftime("%Y-%m-%d")
         except ValueError:
             pass
 

@@ -39,6 +39,10 @@
 <a class="feed-link" href="neprimy_ucinek_feed.xml">neprimy_ucinek_feed.xml</a>
 <div id="feed-nu"><p id="loading">Načítám...</p></div>
 
+<h2>Právní časopisy</h2>
+<a class="feed-link" href="journals_feed.xml">journals_feed.xml</a>
+<div id="feed-journals"><p id="loading">Načítám...</p></div>
+
 <footer>Automaticky aktualizováno každý den. Přidejte XML odkazy do RSS čtečky (Zotero, NetNewsWire, Feedly aj.).</footer>
 
 <script>
@@ -111,6 +115,11 @@ loadFeed("ipcuria_feed.xml", "feed-cjeu", [
 loadFeed("neprimy_ucinek_feed.xml", "feed-nu", [
   { label: "Název", render: i => '<a href="' + i.querySelector("link").textContent + '">' + i.querySelector("title").textContent + '</a>' },
   { label: "Datum", render: getDate }
+]);
+
+loadFeed("journals_feed.xml", "feed-journals", [
+  { label: "Časopis", render: i => '<a href="' + i.querySelector("link").textContent + '">' + i.querySelector("title").textContent + '</a>' },
+  { label: "PDF", render: i => '<a href="' + i.querySelector("link").textContent + '">Stáhnout</a>' }
 ]);
 </script>
 </body>
