@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(curl -s -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36\" \"https://ipcuria.eu/case?reference=C-649/23\")",
-      "WebFetch(domain:eur-lex.europa.eu)"
+      "WebFetch(domain:eur-lex.europa.eu)",
+      "WebSearch",
+      "WebFetch(domain:forums.zotero.org)",
+      "WebFetch(domain:www.zotero.org)"
     ]
   }
 }

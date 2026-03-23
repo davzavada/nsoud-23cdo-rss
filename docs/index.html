@@ -2,15 +2,116 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RSS Feeds – rss.davidzavada.cz</title>
-<style>body{font-family:monospace;max-width:600px;margin:40px auto;padding:0 20px;line-height:1.6}</style>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; }
+  h1 { border-bottom: 2px solid #333; padding-bottom: 8px; }
+  h2 { margin-top: 30px; color: #555; font-size: 1.1em; }
+  .feed-link { display: inline-block; background: #f0f0f0; padding: 4px 10px; border-radius: 4px; font-family: monospace; font-size: 0.9em; text-decoration: none; color: #0366d6; }
+  .feed-link:hover { background: #e0e0e0; }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+  th { text-align: left; background: #f6f6f6; padding: 6px 8px; border-bottom: 2px solid #ddd; }
+  td { padding: 6px 8px; border-bottom: 1px solid #eee; vertical-align: top; }
+  td a { color: #0366d6; text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  .tag { display: inline-block; font-size: 0.75em; padding: 1px 6px; border-radius: 3px; font-weight: 600; }
+  .tag-ruling { background: #dff0d8; color: #3c763d; }
+  .tag-referral { background: #d9edf7; color: #31708f; }
+  .tag-appeal { background: #fcf8e3; color: #8a6d3b; }
+  .tag-pending { background: #f2dede; color: #a94442; }
+  footer { margin-top: 40px; font-size: 0.8em; color: #999; border-top: 1px solid #eee; padding-top: 10px; }
+  #loading { color: #999; font-style: italic; }
+</style>
 </head>
 <body>
 <h1>RSS Feeds</h1>
-<ul>
-<li><a href="feed.xml">Rozhodnutí senátu 23 Cdo</a></li>
-<li><a href="ipcuria_feed.xml">IP Preliminary rulings</a></li>
-<li><a href="neprimy_ucinek_feed.xml">Nepřímý účinek – NS ČR</a></li>
-</ul>
+
+<h2>Rozhodnutí senátu 23 Cdo – NS ČR</h2>
+<a class="feed-link" href="feed.xml">feed.xml</a>
+<div id="feed-nsoud"><p id="loading">Načítám...</p></div>
+
+<h2>CJEU IP case law</h2>
+<a class="feed-link" href="ipcuria_feed.xml">ipcuria_feed.xml</a>
+<div id="feed-cjeu"><p id="loading">Načítám...</p></div>
+
+<h2>Nepřímý účinek – NS ČR</h2>
+<a class="feed-link" href="neprimy_ucinek_feed.xml">neprimy_ucinek_feed.xml</a>
+<div id="feed-nu"><p id="loading">Načítám...</p></div>
+
+<footer>Automaticky aktualizováno každý den. Přidejte XML odkazy do RSS čtečky (Zotero, NetNewsWire, Feedly aj.).</footer>
+
+<script>
+function loadFeed(url, containerId, columns) {
+  fetch(url)
+    .then(r => r.text())
+    .then(xml => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(xml, "text/xml");
+      const items = doc.querySelectorAll("item");
+      const container = document.getElementById(containerId);
+
+      if (items.length === 0) {
+        container.innerHTML = "<p>Žádné položky.</p>";
+        return;
+      }
+
+      let html = "<table><thead><tr>";
+      columns.forEach(c => { html += "<th>" + c.label + "</th>"; });
+      html += "</tr></thead><tbody>";
+
+      items.forEach(item => {
+        html += "<tr>";
+        columns.forEach(c => {
+          html += "<td>" + c.render(item) + "</td>";
+        });
+        html += "</tr>";
+      });
+
+      html += "</tbody></table>";
+      container.innerHTML = html;
+    })
+    .catch(() => {
+      document.getElementById(containerId).innerHTML = "<p>Nepodařilo se načíst feed.</p>";
+    });
+}
+
+function getTag(title) {
+  const m = title.match(/^\[(\w+)\]/);
+  if (!m) return "";
+  const t = m[1].toLowerCase();
+  return '<span class="tag tag-' + t + '">' + m[1] + '</span>';
+}
+
+function getDate(item) {
+  const pd = item.querySelector("pubDate");
+  if (!pd) return "";
+  const d = new Date(pd.textContent);
+  return d.toLocaleDateString("cs-CZ");
+}
+
+function getTitle(item) {
+  const t = item.querySelector("title").textContent;
+  const link = item.querySelector("link").textContent;
+  const clean = t.replace(/^\[\w+\]\s*/, "");
+  return '<a href="' + link + '">' + clean + '</a>';
+}
+
+loadFeed("feed.xml", "feed-nsoud", [
+  { label: "Název", render: i => '<a href="' + i.querySelector("link").textContent + '">' + i.querySelector("title").textContent + '</a>' },
+  { label: "Datum", render: getDate }
+]);
+
+loadFeed("ipcuria_feed.xml", "feed-cjeu", [
+  { label: "Typ", render: i => getTag(i.querySelector("title").textContent) },
+  { label: "Případ", render: getTitle },
+  { label: "Datum", render: getDate }
+]);
+
+loadFeed("neprimy_ucinek_feed.xml", "feed-nu", [
+  { label: "Název", render: i => '<a href="' + i.querySelector("link").textContent + '">' + i.querySelector("title").textContent + '</a>' },
+  { label: "Datum", render: getDate }
+]);
+</script>
 </body>
 </html>

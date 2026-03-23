@@ -100,10 +100,10 @@ def build_rss(decisions):
     rss = Element("rss", version="2.0")
     channel = SubElement(rss, "channel")
 
-    SubElement(channel, "title").text = "IPcuria – CJEU IP case law"
-    SubElement(channel, "link").text = "https://ipcuria.eu/"
+    SubElement(channel, "title").text = "CJEU IP case law"
+    SubElement(channel, "link").text = "https://curia.europa.eu/"
     SubElement(channel, "description").text = (
-        "Latest CJEU IP case law: preliminary rulings, referrals, appeals (via IPcuria)"
+        "Latest CJEU IP case law: preliminary rulings, referrals, appeals"
     )
     SubElement(channel, "language").text = "en"
     SubElement(channel, "lastBuildDate").text = datetime.now(timezone.utc).strftime(
@@ -130,7 +130,6 @@ def build_rss(decisions):
             desc_parts.append(f"Type: {d['detail_type']}")
         for cat in d["categories"]:
             desc_parts.append(f"- {cat}")
-        desc_parts.append(f"IPcuria: {d['ipcuria_url']}")
         desc_parts.append(f"CURIA: {d['curia_url']}")
 
         SubElement(item, "description").text = "\n".join(desc_parts)

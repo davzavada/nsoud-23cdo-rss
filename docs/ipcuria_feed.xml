@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <rss version="2.0">
   <channel>
-    <title>IPcuria – CJEU IP case law</title>
-    <link>https://ipcuria.eu/</link>
-    <description>Latest CJEU IP case law: preliminary rulings, referrals, appeals (via IPcuria)</description>
+    <title>CJEU IP case law</title>
+    <link>https://curia.europa.eu/</link>
+    <description>Latest CJEU IP case law: preliminary rulings, referrals, appeals</description>
     <language>en</language>
-    <lastBuildDate>Mon, 23 Mar 2026 12:39:02 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Mar 2026 17:07:02 +0000</lastBuildDate>
     <item>
       <title>[Ruling] C-649/23 (Institutul G. Călinescu)</title>
       <link>https://curia.europa.eu/juris/liste.do?num=C-649/23</link>
@@ -13,7 +13,6 @@
       <description>[Ruling] 19 Mar 2026, C-649/23 (Institutul G. Călinescu)
 Type: Judgment
 - Copyright &gt; InfoSoc Directive &gt; Article 2 - Reproduction right
-IPcuria: https://ipcuria.eu/case?reference=C-649/23
 CURIA: https://curia.europa.eu/juris/liste.do?num=C-649/23</description>
       <pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate>
     </item>
@@ -26,7 +25,6 @@ Type: Judgment
 - Personal Data Protection &gt; General Data Protection Regulation (GDPR) &gt; Article 15 - Right of access by the data subject
 - Personal Data Protection &gt; General Data Protection Regulation (GDPR) &gt; Article 82 - Right to compensation and liability
 - Personal Data Protection &gt; General Data Protection Regulation (GDPR) &gt; Article 12  Transparent information, communication and modalities for the exercise of the rights of the data subject
-IPcuria: https://ipcuria.eu/case?reference=C-526/24
 CURIA: https://curia.europa.eu/juris/liste.do?num=C-526/24</description>
       <pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate>
     </item>
@@ -37,7 +35,6 @@ CURIA: https://curia.europa.eu/juris/liste.do?num=C-526/24</description>
       <description>[Ruling] 19 Mar 2026, C-371/24 (Comdribus)
 Type: Judgment
 - Personal Data Protection &gt; Law Enforcement Directive (LED)
-IPcuria: https://ipcuria.eu/case?reference=C-371/24
 CURIA: https://curia.europa.eu/juris/liste.do?num=C-371/24</description>
       <pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate>
     </item>
