@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Scraper IPcuria – generuje RSS feed předběžných rozhodnutí SDEU (poslední měsíc)."""
+"""Scraper IPcuria – generuje RSS feed ze 4 kategorií (rulings, referrals, appeals, pending)."""
 
 import os
 import re
@@ -9,7 +9,6 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
 import requests
 from bs4 import BeautifulSoup
 
-URL = "https://ipcuria.eu/all_preliminary_rulings.php"
 CURIA_BASE = "https://curia.europa.eu/juris/liste.do?num="
 OUTPUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "docs", "ipcuria_feed.xml")
 USER_AGENT = (
@@ -17,78 +16,82 @@ USER_AGENT = (
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 )
 
+SOURCES = [
+    ("https://ipcuria.eu/all_preliminary_rulings.php", "Ruling"),
+    ("https://ipcuria.eu/all_referrals.php", "Referral"),
+]
 
-def fetch_decisions():
-    """Stáhne stránku a vrátí rozhodnutí z posledního měsíce."""
-    resp = requests.get(URL, headers={"User-Agent": USER_AGENT}, timeout=30)
-    resp.raise_for_status()
-    soup = BeautifulSoup(resp.text, "html.parser")
 
+def fetch_all():
+    """Stáhne všechny 4 stránky a vrátí rozhodnutí z posledních 31 dnů."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=31)
     decisions = []
 
-    # Stránka má strukturu: text "Judgement of DD Mon YYYY, " + <a href='case?reference=C-XXX/YY'>
-    # následovaný <i>název</i> a <span class='breadcrumbs'> s kategoriemi
-    # Oddělené <hr> tagy
-    body_html = str(soup)
+    for url, category in SOURCES:
+        resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=30)
+        resp.raise_for_status()
+        body_html = resp.text
 
-    # Rozdělíme podle <hr> – každý blok je jedno rozhodnutí
-    blocks = re.split(r"<hr\s*/?>", body_html)
+        # Stránky mají bloky oddělené <hr>
+        blocks = re.split(r"<hr\s*/?>", body_html)
 
-    for block in blocks:
-        block_soup = BeautifulSoup(block, "html.parser")
-        text = block_soup.get_text()
+        for block in blocks:
+            block_soup = BeautifulSoup(block, "html.parser")
+            text = block_soup.get_text()
 
-        # Hledáme vzor "Judgement of DD Mon YYYY" nebo "Order of DD Mon YYYY"
-        date_match = re.search(
-            r"(Judgement|Judgment|Order)\s+of\s+(\d{1,2}\s+\w{3}\s+\d{4})", text
-        )
-        if not date_match:
-            continue
+            # Číslo případu z odkazu
+            link_tag = block_soup.find("a", href=re.compile(r"case\?reference="))
+            if not link_tag:
+                continue
+            case_ref = link_tag.get_text(strip=True)
 
-        decision_type = date_match.group(1)
-        if decision_type in ("Judgement", "Judgment"):
-            decision_type = "Judgment"
+            # Název případu z <i>
+            name_tag = block_soup.find("i")
+            case_name = name_tag.get_text(strip=True) if name_tag else ""
 
-        date_str = date_match.group(2)
-        try:
-            dt = datetime.strptime(date_str, "%d %b %Y").replace(tzinfo=timezone.utc)
-        except ValueError:
-            continue
+            # Datum – různé formáty:
+            # "Judgement of 19 Mar 2026" / "Order of ..." / "lodged on 3 Feb 2026"
+            date_match = re.search(r"(\d{1,2}\s+\w{3}\s+\d{4})", text)
+            if not date_match:
+                continue
 
-        # Filtrujeme jen poslední měsíc
-        if dt < cutoff:
-            continue
+            date_str = date_match.group(1)
+            try:
+                dt = datetime.strptime(date_str, "%d %b %Y").replace(tzinfo=timezone.utc)
+            except ValueError:
+                continue
 
-        # Číslo případu z odkazu
-        link_tag = block_soup.find("a", href=re.compile(r"case\?reference="))
-        if not link_tag:
-            continue
+            if dt < cutoff:
+                continue
 
-        case_ref = link_tag.get_text(strip=True)
+            # Typ rozhodnutí (pro Ruling/Appeal stránky)
+            type_match = re.search(r"(Judgement|Judgment|Order)", text)
+            detail_type = ""
+            if type_match:
+                detail_type = type_match.group(1)
+                if detail_type == "Judgement":
+                    detail_type = "Judgment"
 
-        # Název případu z <i>
-        name_tag = block_soup.find("i")
-        case_name = name_tag.get_text(strip=True) if name_tag else ""
+            # Kategorie z breadcrumbs (pokud existují)
+            categories = []
+            for span in block_soup.select("span.breadcrumbs"):
+                cats = [a.get_text(strip=True) for a in span.find_all("a")]
+                if cats:
+                    categories.append(" > ".join(cats))
 
-        # Kategorie z breadcrumbs
-        categories = []
-        for span in block_soup.select("span.breadcrumbs"):
-            cats = [a.get_text(strip=True) for a in span.find_all("a")]
-            if cats:
-                categories.append(" > ".join(cats))
+            decisions.append({
+                "case_ref": case_ref,
+                "case_name": case_name,
+                "date": dt,
+                "date_str": date_str,
+                "category": category,
+                "detail_type": detail_type,
+                "categories": categories,
+                "ipcuria_url": f"https://ipcuria.eu/case?reference={case_ref}",
+                "curia_url": f"{CURIA_BASE}{case_ref}",
+            })
 
-        decisions.append({
-            "case_ref": case_ref,
-            "case_name": case_name,
-            "date": dt,
-            "date_str": date_str,
-            "decision_type": decision_type,
-            "categories": categories,
-            "ipcuria_url": f"https://ipcuria.eu/case?reference={case_ref}",
-            "curia_url": f"{CURIA_BASE}{case_ref}",
-        })
-
+    decisions.sort(key=lambda d: d["date"], reverse=True)
     return decisions
 
 
@@ -97,10 +100,10 @@ def build_rss(decisions):
     rss = Element("rss", version="2.0")
     channel = SubElement(rss, "channel")
 
-    SubElement(channel, "title").text = "IPcuria – CJEU preliminary rulings (IP)"
-    SubElement(channel, "link").text = URL
+    SubElement(channel, "title").text = "IPcuria – CJEU IP case law"
+    SubElement(channel, "link").text = "https://ipcuria.eu/"
     SubElement(channel, "description").text = (
-        "Recent preliminary rulings by the CJEU in intellectual property matters (via IPcuria)"
+        "Latest CJEU IP case law: preliminary rulings, referrals, appeals (via IPcuria)"
     )
     SubElement(channel, "language").text = "en"
     SubElement(channel, "lastBuildDate").text = datetime.now(timezone.utc).strftime(
@@ -110,19 +113,21 @@ def build_rss(decisions):
     for d in decisions:
         item = SubElement(channel, "item")
 
-        title = f"{d['decision_type']} {d['case_ref']}"
+        title = f"[{d['category']}] {d['case_ref']}"
         if d["case_name"]:
             title += f" ({d['case_name']})"
         SubElement(item, "title").text = title
 
         SubElement(item, "link").text = d["curia_url"]
-        SubElement(item, "guid", isPermaLink="false").text = d["case_ref"]
+        SubElement(item, "guid", isPermaLink="false").text = f"{d['category']}-{d['case_ref']}"
 
         desc_parts = [
-            f"{d['decision_type']} of {d['date_str']}, {d['case_ref']}",
+            f"[{d['category']}] {d['date_str']}, {d['case_ref']}",
         ]
         if d["case_name"]:
             desc_parts[0] += f" ({d['case_name']})"
+        if d["detail_type"]:
+            desc_parts.append(f"Type: {d['detail_type']}")
         for cat in d["categories"]:
             desc_parts.append(f"- {cat}")
         desc_parts.append(f"IPcuria: {d['ipcuria_url']}")
@@ -138,12 +143,12 @@ def build_rss(decisions):
 
 
 def main():
-    print("Stahuji IPcuria – předběžná rozhodnutí SDEU...")
-    decisions = fetch_decisions()
-    print(f"Nalezeno {len(decisions)} rozhodnutí z posledního měsíce")
+    print("Stahuji IPcuria – 4 kategorie...")
+    decisions = fetch_all()
+    print(f"Nalezeno {len(decisions)} položek z posledního měsíce")
 
     for d in decisions:
-        print(f"  - {d['case_ref']} {d['case_name']} ({d['date_str']})")
+        print(f"  [{d['category']}] {d['case_ref']} {d['case_name']} ({d['date_str']})")
 
     rss = build_rss(decisions)
     indent(rss, space="  ")
