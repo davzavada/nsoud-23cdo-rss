@@ -191,15 +191,21 @@ def main():
 
     # 1. ÚPV
     print("  Zdroj: Duševní vlastnictví / Evropské právo (ÚPV)")
-    upv = scrape_upv()
-    print(f"  Nalezeno {len(upv)} nejnovějších čísel")
-    all_items.extend(upv)
+    try:
+        upv = scrape_upv()
+        print(f"  Nalezeno {len(upv)} nejnovějších čísel")
+        all_items.extend(upv)
+    except Exception as e:
+        print(f"  CHYBA při stahování ÚPV: {e}")
 
     # 2. MUNI RPT
     print("  Zdroj: Revue pro právo a technologie (MUNI)")
-    muni = fetch_muni_rss()
-    print(f"  Nalezeno {len(muni)} článků")
-    all_items.extend(muni)
+    try:
+        muni = fetch_muni_rss()
+        print(f"  Nalezeno {len(muni)} článků")
+        all_items.extend(muni)
+    except Exception as e:
+        print(f"  CHYBA při stahování MUNI RPT: {e}")
 
     # Sort by date desc
     all_items.sort(key=lambda x: x["pub_date"], reverse=True)

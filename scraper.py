@@ -100,7 +100,11 @@ def build_rss(decisions):
 
 def main():
     print(f"Stahuji úřední desku NS ČR...")
-    decisions = fetch_decisions()
+    try:
+        decisions = fetch_decisions()
+    except Exception as e:
+        print(f"CHYBA při stahování: {e}")
+        decisions = []
     print(f"Nalezeno {len(decisions)} rozhodnutí senátu {SENAT}")
 
     for d in decisions:

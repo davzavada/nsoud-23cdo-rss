@@ -149,7 +149,11 @@ def build_rss(decisions):
 
 def main():
     print("Stahuji úřední desku NS ČR (civilní kolegium)...")
-    all_decisions = fetch_all_decisions()
+    try:
+        all_decisions = fetch_all_decisions()
+    except Exception as e:
+        print(f"CHYBA při stahování: {e}")
+        all_decisions = []
     print(f"Nalezeno {len(all_decisions)} rozhodnutí celkem")
 
     matched = []

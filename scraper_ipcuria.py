@@ -28,8 +28,12 @@ def fetch_all():
     decisions = []
 
     for url, category in SOURCES:
-        resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=30)
-        resp.raise_for_status()
+        try:
+            resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=30)
+            resp.raise_for_status()
+        except Exception as e:
+            print(f"  CHYBA při stahování {category} ({url}): {e}")
+            continue
         body_html = resp.text
 
         # Stránky mají bloky oddělené <hr>
