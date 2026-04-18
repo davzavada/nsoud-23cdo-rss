@@ -5,7 +5,18 @@
     <link>https://curia.europa.eu/</link>
     <description>Latest CJEU IP case law: preliminary rulings, referrals, appeals</description>
     <language>en</language>
-    <lastBuildDate>Fri, 17 Apr 2026 06:38:50 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2026 06:26:55 +0000</lastBuildDate>
+    <item>
+      <title>[Ruling] C-496/24 (Stichting de Thuiskopie)</title>
+      <link>https://curia.europa.eu/juris/liste.do?num=C-496/24</link>
+      <guid isPermaLink="false">Ruling-C-496/24</guid>
+      <description>[Ruling] 16 Apr 2026, C-496/24 (Stichting de Thuiskopie)
+Type: Judgment
+- Copyright &gt; InfoSoc Directive &gt; Article 5 - Exceptions and limitations
+CURIA: https://curia.europa.eu/juris/liste.do?num=C-496/24</description>
+      <pubDate>Thu, 16 Apr 2026 12:00:00 +0000</pubDate>
+      <dc:date>2026-04-16</dc:date>
+    </item>
     <item>
       <title>[Ruling] C-590/23 (Pelham)</title>
       <link>https://curia.europa.eu/juris/liste.do?num=C-590/23</link>
@@ -16,6 +27,15 @@ Type: Judgment
 CURIA: https://curia.europa.eu/juris/liste.do?num=C-590/23</description>
       <pubDate>Tue, 14 Apr 2026 12:00:00 +0000</pubDate>
       <dc:date>2026-04-14</dc:date>
+    </item>
+    <item>
+      <title>[Referral] C-313/26 (Momiert)</title>
+      <link>https://curia.europa.eu/juris/liste.do?num=C-313/26</link>
+      <guid isPermaLink="false">Referral-C-313/26</guid>
+      <description>[Referral] 9 Apr 2026, C-313/26 (Momiert)
+CURIA: https://curia.europa.eu/juris/liste.do?num=C-313/26</description>
+      <pubDate>Thu, 09 Apr 2026 12:00:00 +0000</pubDate>
+      <dc:date>2026-04-09</dc:date>
     </item>
     <item>
       <title>[Referral] C-287/26 (Bundesverband für Inkasso und Forderungsmanagement)</title>
