@@ -5,7 +5,7 @@
     <link>https://curia.europa.eu/</link>
     <description>Latest CJEU IP case law: preliminary rulings, referrals, appeals</description>
     <language>en</language>
-    <lastBuildDate>Sat, 25 Apr 2026 06:31:57 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2026 06:38:40 +0000</lastBuildDate>
     <item>
       <title>[Ruling] C-132/25 (M.M. Ristorazione)</title>
       <link>https://curia.europa.eu/juris/liste.do?num=C-132/25</link>
@@ -65,26 +65,6 @@ CURIA: https://curia.europa.eu/juris/liste.do?num=C-313/26</description>
 CURIA: https://curia.europa.eu/juris/liste.do?num=C-287/26</description>
       <pubDate>Sat, 04 Apr 2026 12:00:00 +0000</pubDate>
       <dc:date>2026-04-04</dc:date>
-    </item>
-    <item>
-      <title>[Ruling] C-412/24 (Fauré Le Page)</title>
-      <link>https://curia.europa.eu/juris/liste.do?num=C-412/24</link>
-      <guid isPermaLink="false">Ruling-C-412/24</guid>
-      <description>[Ruling] 26 Mar 2026, C-412/24 (Fauré Le Page)
-Type: Judgment
-- Trade marks &gt; Absolute grounds for refusal or invalidity &gt; Descriptive
-CURIA: https://curia.europa.eu/juris/liste.do?num=C-412/24</description>
-      <pubDate>Thu, 26 Mar 2026 12:00:00 +0000</pubDate>
-      <dc:date>2026-03-26</dc:date>
-    </item>
-    <item>
-      <title>[Referral] C-248/26 (Radio Express 92.3 FM)</title>
-      <link>https://curia.europa.eu/juris/liste.do?num=C-248/26</link>
-      <guid isPermaLink="false">Referral-C-248/26</guid>
-      <description>[Referral] 26 Mar 2026, C-248/26 (Radio Express 92.3 FM)
-CURIA: https://curia.europa.eu/juris/liste.do?num=C-248/26</description>
-      <pubDate>Thu, 26 Mar 2026 12:00:00 +0000</pubDate>
-      <dc:date>2026-03-26</dc:date>
     </item>
   </channel>
 </rss>
