@@ -5,7 +5,7 @@
     <link>https://curia.europa.eu/</link>
     <description>Latest CJEU IP case law: preliminary rulings, referrals, appeals</description>
     <language>en</language>
-    <lastBuildDate>Mon, 04 May 2026 07:02:52 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 05 May 2026 06:46:36 +0000</lastBuildDate>
     <item>
       <title>[Ruling] C-127/24 (VHC 2 Seniorenresidenz)</title>
       <link>https://curia.europa.eu/juris/liste.do?num=C-127/24</link>
@@ -67,15 +67,6 @@ CURIA: https://curia.europa.eu/juris/liste.do?num=C-323/26</description>
 CURIA: https://curia.europa.eu/juris/liste.do?num=C-313/26</description>
       <pubDate>Thu, 09 Apr 2026 12:00:00 +0000</pubDate>
       <dc:date>2026-04-09</dc:date>
-    </item>
-    <item>
-      <title>[Referral] C-287/26 (Bundesverband für Inkasso und Forderungsmanagement)</title>
-      <link>https://curia.europa.eu/juris/liste.do?num=C-287/26</link>
-      <guid isPermaLink="false">Referral-C-287/26</guid>
-      <description>[Referral] 4 Apr 2026, C-287/26 (Bundesverband für Inkasso und Forderungsmanagement)
-CURIA: https://curia.europa.eu/juris/liste.do?num=C-287/26</description>
-      <pubDate>Sat, 04 Apr 2026 12:00:00 +0000</pubDate>
-      <dc:date>2026-04-04</dc:date>
     </item>
   </channel>
 </rss>
