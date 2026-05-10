@@ -5,7 +5,7 @@
     <link>https://curia.europa.eu/</link>
     <description>Latest CJEU IP case law: preliminary rulings, referrals, appeals</description>
     <language>en</language>
-    <lastBuildDate>Sat, 09 May 2026 06:43:59 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2026 06:55:31 +0000</lastBuildDate>
     <item>
       <title>[Ruling] C-127/24 (VHC 2 Seniorenresidenz)</title>
       <link>https://curia.europa.eu/juris/liste.do?num=C-127/24</link>
@@ -58,15 +58,6 @@ CURIA: https://curia.europa.eu/juris/liste.do?num=C-590/23</description>
 CURIA: https://curia.europa.eu/juris/liste.do?num=C-323/26</description>
       <pubDate>Tue, 14 Apr 2026 12:00:00 +0000</pubDate>
       <dc:date>2026-04-14</dc:date>
-    </item>
-    <item>
-      <title>[Referral] C-313/26 (Momiert)</title>
-      <link>https://curia.europa.eu/juris/liste.do?num=C-313/26</link>
-      <guid isPermaLink="false">Referral-C-313/26</guid>
-      <description>[Referral] 9 Apr 2026, C-313/26 (Momiert)
-CURIA: https://curia.europa.eu/juris/liste.do?num=C-313/26</description>
-      <pubDate>Thu, 09 Apr 2026 12:00:00 +0000</pubDate>
-      <dc:date>2026-04-09</dc:date>
     </item>
   </channel>
 </rss>
