@@ -5,7 +5,7 @@
     <link>https://curia.europa.eu/</link>
     <description>Latest CJEU IP case law: preliminary rulings, referrals, appeals</description>
     <language>en</language>
-    <lastBuildDate>Sat, 16 May 2026 06:47:55 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2026 06:58:25 +0000</lastBuildDate>
     <item>
       <title>[Ruling] C-797/23 (Meta Platforms Ireland)</title>
       <link>https://curia.europa.eu/juris/liste.do?num=C-797/23</link>
@@ -47,17 +47,6 @@ Type: Judgment
 CURIA: https://curia.europa.eu/juris/liste.do?num=C-132/25</description>
       <pubDate>Thu, 23 Apr 2026 12:00:00 +0000</pubDate>
       <dc:date>2026-04-23</dc:date>
-    </item>
-    <item>
-      <title>[Ruling] C-496/24 (Stichting de Thuiskopie)</title>
-      <link>https://curia.europa.eu/juris/liste.do?num=C-496/24</link>
-      <guid isPermaLink="false">Ruling-C-496/24</guid>
-      <description>[Ruling] 16 Apr 2026, C-496/24 (Stichting de Thuiskopie)
-Type: Judgment
-- Copyright &gt; InfoSoc Directive &gt; Article 5 - Exceptions and limitations
-CURIA: https://curia.europa.eu/juris/liste.do?num=C-496/24</description>
-      <pubDate>Thu, 16 Apr 2026 12:00:00 +0000</pubDate>
-      <dc:date>2026-04-16</dc:date>
     </item>
   </channel>
 </rss>
